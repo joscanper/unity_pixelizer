@@ -34,20 +34,18 @@
 
 			StructuredBuffer<Voxel> _Voxels;
 
-			struct v2f {
+			struct v2g
+			{
 				float4 pos : SV_POSITION;
 				float4 col : COLOR;
-				float3 normal : NORMAL;
-				float2 uv : TEXCOORD0;
 			};
 
-			v2f vert(uint id : SV_VertexID)
+			v2g vert(uint id : SV_VertexID)
 			{
-				v2f o;
+				v2g o;
 				o.pos = float4(_Voxels[id].pos, 1);
-				o.uv = _Voxels[id].uv;
-				o.col = tex2Dlod(_PixelatedTexture, float4(o.uv.x, o.uv.y, 0, 0));
-				o.normal = 1;
+				const float2 uvs = _Voxels[id].uv;
+				o.col = tex2Dlod(_PixelatedTexture, float4(uvs.x, uvs.y, 0, 0));
 				return o;
 			}
 
@@ -122,20 +120,32 @@
 				half3(-1, 0, 0),
 			};
 
-			[maxvertexcount(CUBE_VERTS)]
-			void geom(point v2f input[1], uint pid : SV_PrimitiveID, inout TriangleStream<v2f> outStream)
+			struct g2f
 			{
-				float offset = _VoxelSize * 0.5;
-				v2f v = input[0];
-				float3 localPos = v.pos;
+				float4 pos : SV_POSITION;
+				float4 col : COLOR;
+				float3 normal : NORMAL;
+			};
+
+			[maxvertexcount(CUBE_VERTS)]
+			void geom(point v2g input[1], uint pid : SV_PrimitiveID, inout TriangleStream<g2f> outStream)
+			{
+				if (input[0].col.a <= 0)
+					return;
+
+				g2f v;
+				v.col = input[0].col;
+				const float offset = _VoxelSize * 0.5;
+				const float3 center = input[0].pos;
 
 				for (uint i = 0; i < CUBE_VERTS; ++i)
 				{
-					float3 cubeV = cubeVertices[i];
-					float3 localV = localPos + cubeV * offset;
-					float4 worldPos = mul(_ObjWorldMatrix, float4(localV,1));
+					const int normalIndex = i / 6;
+					const float3 cubeV = cubeVertices[i];
+					const float3 localV = center + cubeV * offset;
+					const float4 worldPos = mul(_ObjWorldMatrix, float4(localV,1));
+
 					v.pos = UnityWorldToClipPos(worldPos);
-					int normalIndex = i / 6;
 					v.normal = normalize(mul(cubeNormals[normalIndex], (float3x3)_WorldObjMatrix));
 					outStream.Append(v);
 
@@ -144,11 +154,10 @@
 				}
 			}
 
-			fixed4 frag(v2f i) : SV_Target
+			fixed4 frag(g2f i) : SV_Target
 			{
-			   clip(i.col.a - 0.1);
-				half nl = max(0.75, dot(i.normal, _WorldSpaceLightPos0.xyz) + 0.25);
-			   return lerp(_InitColor, i.col * nl, saturate((_Time.y - _InitTime) / _InitColorSpeed));
+				half nl = max(0.75, dot(i.normal, _WorldSpaceLightPos0.xyz) + 0.25);	// Just some basic lighting so the voxel doesn't look plain
+				return lerp(_InitColor, i.col * nl, saturate((_Time.y - _InitTime) / _InitColorSpeed));
 			}
 
 			ENDCG

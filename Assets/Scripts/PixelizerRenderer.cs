@@ -6,6 +6,9 @@ public class PixelizerRenderer : MonoBehaviour
 {
     private static readonly int sObjWorldMatrixID = Shader.PropertyToID("_ObjWorldMatrix");
     private static readonly int sWorldObjMatrixID = Shader.PropertyToID("_WorldObjMatrix");
+    private static readonly int sVoxelSizeID = Shader.PropertyToID("_VoxelSize");
+    private static readonly int sVoxelsID = Shader.PropertyToID("_Voxels");
+    private static readonly int sTextureID = Shader.PropertyToID("_PixelatedTexture");
 
     public int TextureSize = 32;
     public GameObject Target;
@@ -45,10 +48,8 @@ public class PixelizerRenderer : MonoBehaviour
         AddCommandBufferToCamera(mPixelatedCam);
 
         CreateVoxelBuffer();
-        InitMaterial();
 
         mSystem = GetComponentInChildren<ParticleSystem>();
-
         mExplosionTexture = new Texture2D(TextureSize, TextureSize, TextureFormat.ARGB32, false);
     }
 
@@ -99,15 +100,6 @@ public class PixelizerRenderer : MonoBehaviour
 
     // --------------------------------------------------------------------
 
-    private void InitMaterial()
-    {
-        PixelizerMaterial.SetFloat("_VoxelSize", VoxelSize);
-        PixelizerMaterial.SetBuffer("_Voxels", mVoxelsBuffer);
-        PixelizerMaterial.SetTexture("_PixelatedTexture", mRenderTexture);
-    }
-
-    // --------------------------------------------------------------------
-
     private void Update()
     {
         Vector3 newFwd = mMainCam.transform.forward;
@@ -119,6 +111,9 @@ public class PixelizerRenderer : MonoBehaviour
         PixelizerMaterial.SetPass(0);
         PixelizerMaterial.SetMatrix(sObjWorldMatrixID, transform.localToWorldMatrix);
         PixelizerMaterial.SetMatrix(sWorldObjMatrixID, transform.worldToLocalMatrix);
+        PixelizerMaterial.SetFloat(sVoxelSizeID, VoxelSize);
+        PixelizerMaterial.SetBuffer(sVoxelsID, mVoxelsBuffer);
+        PixelizerMaterial.SetTexture(sTextureID, mRenderTexture);
 
         Graphics.DrawProcedural(PixelizerMaterial, mBounds, MeshTopology.Points, TextureSize * TextureSize);
     }
@@ -150,10 +145,6 @@ public class PixelizerRenderer : MonoBehaviour
 
     private void SetPixelated(bool pixelated)
     {
-        Animator animator = Target.GetComponentInChildren<Animator>();
-        if (animator)
-            animator.cullingMode = pixelated ? AnimatorCullingMode.AlwaysAnimate : AnimatorCullingMode.CullUpdateTransforms;
-
         foreach (Renderer renderer in mRenderers)
         {
             renderer.gameObject.layer = pixelated ? (int)Layers.Pixelator : 0;
@@ -161,6 +152,10 @@ public class PixelizerRenderer : MonoBehaviour
             if (skinned)
                 skinned.updateWhenOffscreen = pixelated;
         }
+
+        Animator animator = Target.GetComponentInChildren<Animator>();
+        if (animator)
+            animator.cullingMode = pixelated ? AnimatorCullingMode.AlwaysAnimate : AnimatorCullingMode.CullUpdateTransforms;
 
         enabled = pixelated;
     }
