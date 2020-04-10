@@ -25,12 +25,8 @@ public class PixelizerRenderer : MonoBehaviour
     private RenderTexture mRenderTexture;
     private CommandBuffer mCmdBuffer;
     private ComputeBuffer mVoxelsBuffer;
-
-    private bool mPixelated;
-    private Matrix4x4 mPixelatedObjMatrix;
     private Texture2D mExplosionTexture;
     private Bounds mBounds;
-
     private ParticleSystem mSystem;
 
     private struct BufferVoxel
@@ -114,26 +110,17 @@ public class PixelizerRenderer : MonoBehaviour
 
     private void Update()
     {
-        if (mPixelated)
-        {
-            RotateWithMainCam();
-            mPixelatedCam.Render();
+        Vector3 newFwd = mMainCam.transform.forward;
+        newFwd.y = 0;
+        transform.SetPositionAndRotation(Target.transform.position, Quaternion.LookRotation(newFwd, Vector3.up));
 
-            PixelizerMaterial.SetPass(0);
-            PixelizerMaterial.SetMatrix(sObjWorldMatrixID, transform.localToWorldMatrix);
-            PixelizerMaterial.SetMatrix(sWorldObjMatrixID, transform.worldToLocalMatrix);
+        mPixelatedCam.Render();
 
-            Graphics.DrawProcedural(PixelizerMaterial, mBounds, MeshTopology.Points, TextureSize * TextureSize);
-        }
-    }
+        PixelizerMaterial.SetPass(0);
+        PixelizerMaterial.SetMatrix(sObjWorldMatrixID, transform.localToWorldMatrix);
+        PixelizerMaterial.SetMatrix(sWorldObjMatrixID, transform.worldToLocalMatrix);
 
-    // --------------------------------------------------------------------
-
-    private void RotateWithMainCam()
-    {
-        Vector3 fromCamToMe = transform.position - mMainCam.transform.position;
-        fromCamToMe.y = 0;
-        transform.LookAt(fromCamToMe.normalized, Vector3.up);
+        Graphics.DrawProcedural(PixelizerMaterial, mBounds, MeshTopology.Points, TextureSize * TextureSize);
     }
 
     // --------------------------------------------------------------------
@@ -175,7 +162,7 @@ public class PixelizerRenderer : MonoBehaviour
                 skinned.updateWhenOffscreen = pixelated;
         }
 
-        mPixelated = pixelated;
+        enabled = pixelated;
     }
 
     // --------------------------------------------------------------------
@@ -230,7 +217,7 @@ public class PixelizerRenderer : MonoBehaviour
 
         mSystem.SetParticles(particles);
 
-        mPixelated = false;
+        enabled = false;
     }
 
 #if UNITY_EDITOR
