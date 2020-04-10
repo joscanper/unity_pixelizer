@@ -1,0 +1,56 @@
+Version 1.0.0
+----------------------
+PolyLabs
+----------------------
+
+Glossary:
+---------
+1. Important notes
+2. Customizing Prefabs
+3. Release notes
+
+
+1.Important notes:
+------------------
+- Assets can be rendered without GI by un-checking the "Static" checkbox in
+their prefab.
+
+- All asset prefabs are rendered to cast "Two Sided" shadows to prevent cracks
+and streaks of light in the projected shadows.
+
+2. Customizing Prefabs:
+-----------------------
+- All Low Poly Assets were designed with ease of use in mind to save time for the
+	developer and ensure the desired look can be achieved in only a few clicks!
+
+	- All of the asset meshes are comprised of sub-meshes, each containing their
+	own material.
+
+	To customize the look of a mesh/prefab:
+	1. navigate to the prefab (or mesh if you wish to create a new prefab)
+	2. In the inspector view, find the "Mesh Renderer" Component and toggle
+	the "Materials" drop down menu.
+	3. Each element coordinates to a different element of the mesh. To change
+	the look of the prefab, drag a material into the element you wish to modify
+	or use the selector.
+
+	When creating a new emissive Material:
+	1.  Often it is best to test your material on a mesh and render it while you adjust.
+		2a. When selecting the emissive value, it can be made simple to get the desired color
+		of your albedo by using the color sampler and clicking in the sample box of your
+		albedo.
+		2b. Sometimes this can result in a very bright and difficult to see material color.
+		to fix this, test different emissive values in the emissive texture box, sometimes
+		a value as little as 0.05 is all that is required!
+
+
+
+3. Release notes:
+-----------------
+Version 1.0.0 (Initial Release):
+Features:
+	-7 sample meshes!
+
+	For support, contact polylaboratory@gmail.com with questions or concerns and we will be glad to help!
+	
+	If you enjoyed this sample pack, help support us by downloading the full version!

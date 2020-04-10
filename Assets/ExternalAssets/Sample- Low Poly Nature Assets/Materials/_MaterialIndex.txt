@@ -1,0 +1,54 @@
+This list details all materials that come standard with the asset pack
+
+Material ID          Hexadecimal          Emissive Hexadecimal
+-----------          -----------          --------------------
+A.
+AutumnLeaves1        FF7700(FF)           N/A
+AutumnLeaves2        CC5817(FF)           N/A
+AutumnLeaves3        F0A90A(FF)           N/A
+
+B.
+Bamboo               A67034(FF)           N/A
+Bark                 654321(FF)           N/A
+Berries              85443F(FF)           N/A
+Black                000000(FF)           N/A
+
+C.
+Cactus               237543(FF)           N/A
+CrystalBlue          00BFFF(FF)           004C66
+CrystalGreen         45A570(FF)           2A6645
+CrystalRed           9B111E(FF)           7F0D18
+
+D.
+Dirt				 161402(FF)			  N/A
+
+L.
+Leaves1              33630F(FF)           N/A
+Leaves2              9F6E41(FF)           N/A
+Leaves3              063D05(FF)           N/A
+
+M.
+MushroomGlow         7E8547(FF)           787F44
+MushroomStem         F4EAD0(FF)           N/A
+MushroomTop          7E6741(FF)           N/A
+
+O.
+Orange               FFAA00(FF)           N/A
+OreCobalt            0071B6(FF)           003F66
+OreGold              999908(FF)           4C4C03
+OreIron              AF5B46(FF)           190D0A
+OreSilver            B0CDBD(FF)           0A0C0B
+
+P.
+Purple               160C8E(FF)           N/A
+
+R.
+Red                  FF0000(FF)           N/A
+Rock                 4E4C4B(FF)           N/A
+
+W.
+White                FFFFFF(FF)           N/A
+Wood                 CDB386(FF)           N/A
+
+Y.
+Yellow               FFFF00(FF)           N/A
