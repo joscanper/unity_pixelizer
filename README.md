@@ -1,6 +1,8 @@
 # Ratchet &amp; Clank™ Pixelizer FX in Unity3D
 This project shows how to implement Ratchet &amp; Clank™ pixelizer weapon fx in Unity3D.
 
+Please watch the following video to have a better understanding of how it works : https://youtu.be/b16JFKrGrFE
+
 > Ratchet &amp; Clank is a trademark of SONY INTERACTIVE ENTERTAINMENT LLC in the U.S. and/or other countries.
 
 ![Pixelizer demo](https://github.com/joscanper/unity_pixelizer/blob/master/Showcase/Demo1b.gif)
