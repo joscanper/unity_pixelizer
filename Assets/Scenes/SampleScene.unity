@@ -1467,6 +1467,10 @@ PrefabInstance:
       propertyPath: m_UpdateWhenOffscreen
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9522842, guid: b89e0c3c675d2f6468bb44ecbf17fb04, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b89e0c3c675d2f6468bb44ecbf17fb04, type: 3}
 --- !u!4 &1533496852 stripped
@@ -2119,6 +2123,56 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pixelizer
       objectReference: {fileID: 0}
+    - target: {fileID: 5356430381435720816, guid: f1a7ff1e81cd35445ba31c52f4d32f21,
+        type: 3}
+      propertyPath: PixelatedCharacter
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5356430381435720816, guid: f1a7ff1e81cd35445ba31c52f4d32f21,
+        type: 3}
+      propertyPath: Character
+      value: 
+      objectReference: {fileID: 1140926}
+    - target: {fileID: 5356430381435720816, guid: f1a7ff1e81cd35445ba31c52f4d32f21,
+        type: 3}
+      propertyPath: Layer.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 5356430381435720816, guid: f1a7ff1e81cd35445ba31c52f4d32f21,
+        type: 3}
+      propertyPath: VoxelMesh
+      value: 
+      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 5356430381435720816, guid: f1a7ff1e81cd35445ba31c52f4d32f21,
+        type: 3}
+      propertyPath: PixelatedLayer.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 5356430381435720816, guid: f1a7ff1e81cd35445ba31c52f4d32f21,
+        type: 3}
+      propertyPath: OnPixelatedLayer.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 5356430381435720816, guid: f1a7ff1e81cd35445ba31c52f4d32f21,
+        type: 3}
+      propertyPath: CharacterMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 2adcd0740dbab9543950e17d5421900e, type: 2}
+    - target: {fileID: 5356430381435720816, guid: f1a7ff1e81cd35445ba31c52f4d32f21,
+        type: 3}
+      propertyPath: Rotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5356430381435720816, guid: f1a7ff1e81cd35445ba31c52f4d32f21,
+        type: 3}
+      propertyPath: Target
+      value: 
+      objectReference: {fileID: 1140926}
+    - target: {fileID: 5356430381435720816, guid: f1a7ff1e81cd35445ba31c52f4d32f21,
+        type: 3}
+      propertyPath: TargetMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 96d5275c47ddf494192fd929f7c20253, type: 2}
     - target: {fileID: 5289780487951870084, guid: f1a7ff1e81cd35445ba31c52f4d32f21,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2174,55 +2228,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5356430381435720816, guid: f1a7ff1e81cd35445ba31c52f4d32f21,
-        type: 3}
-      propertyPath: PixelatedCharacter
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5356430381435720816, guid: f1a7ff1e81cd35445ba31c52f4d32f21,
-        type: 3}
-      propertyPath: Character
-      value: 
-      objectReference: {fileID: 1140926}
-    - target: {fileID: 5356430381435720816, guid: f1a7ff1e81cd35445ba31c52f4d32f21,
-        type: 3}
-      propertyPath: Layer.m_Bits
-      value: 256
-      objectReference: {fileID: 0}
-    - target: {fileID: 5356430381435720816, guid: f1a7ff1e81cd35445ba31c52f4d32f21,
-        type: 3}
-      propertyPath: VoxelMesh
-      value: 
-      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-    - target: {fileID: 5356430381435720816, guid: f1a7ff1e81cd35445ba31c52f4d32f21,
-        type: 3}
-      propertyPath: PixelatedLayer.m_Bits
-      value: 256
-      objectReference: {fileID: 0}
-    - target: {fileID: 5356430381435720816, guid: f1a7ff1e81cd35445ba31c52f4d32f21,
-        type: 3}
-      propertyPath: OnPixelatedLayer.m_Bits
-      value: 256
-      objectReference: {fileID: 0}
-    - target: {fileID: 5356430381435720816, guid: f1a7ff1e81cd35445ba31c52f4d32f21,
-        type: 3}
-      propertyPath: CharacterMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 2adcd0740dbab9543950e17d5421900e, type: 2}
-    - target: {fileID: 5356430381435720816, guid: f1a7ff1e81cd35445ba31c52f4d32f21,
-        type: 3}
-      propertyPath: Rotation
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5356430381435720816, guid: f1a7ff1e81cd35445ba31c52f4d32f21,
-        type: 3}
-      propertyPath: Target
-      value: 
-      objectReference: {fileID: 1140926}
-    - target: {fileID: 5356430381435720816, guid: f1a7ff1e81cd35445ba31c52f4d32f21,
-        type: 3}
-      propertyPath: TargetMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 96d5275c47ddf494192fd929f7c20253, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1a7ff1e81cd35445ba31c52f4d32f21, type: 3}

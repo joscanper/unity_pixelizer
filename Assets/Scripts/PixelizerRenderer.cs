@@ -9,6 +9,7 @@ public class PixelizerRenderer : MonoBehaviour
     private static readonly int sVoxelSizeID = Shader.PropertyToID("_VoxelSize");
     private static readonly int sVoxelsID = Shader.PropertyToID("_Voxels");
     private static readonly int sTextureID = Shader.PropertyToID("_PixelatedTexture");
+    private static readonly int sInitTimeID = Shader.PropertyToID("_InitTime");
 
     public int TextureSize = 32;
     public GameObject Target;
@@ -131,7 +132,6 @@ public class PixelizerRenderer : MonoBehaviour
     public void Pixelate()
     {
         SetPixelated(true);
-        PixelizerMaterial.SetFloat("_InitTime", Time.time);
     }
 
     // --------------------------------------------------------------------
@@ -158,6 +158,9 @@ public class PixelizerRenderer : MonoBehaviour
             animator.cullingMode = pixelated ? AnimatorCullingMode.AlwaysAnimate : AnimatorCullingMode.CullUpdateTransforms;
 
         enabled = pixelated;
+
+        if (pixelated)
+            PixelizerMaterial.SetFloat(sInitTimeID, Time.time);
     }
 
     // --------------------------------------------------------------------
